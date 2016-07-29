@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package emg.test.camelinaction.cp1;
+package emg.test.camelinaction.cp2;
 
 import emg.test.camelinaction.common.BaseCamelTest;
 import org.apache.log4j.LogManager;
@@ -17,10 +17,10 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author edison
  */
-public class FileCopierTest extends BaseCamelTest {
-    private final static Logger logger = LogManager.getLogger(FileCopier.class);
+public class JmsRouteSampleTest extends BaseCamelTest {
+    private final static Logger logger = LogManager.getLogger(JmsRouteSampleTest.class);
 
-    public FileCopierTest() {
+    public JmsRouteSampleTest() {
     }
 
     @BeforeClass
@@ -46,13 +46,10 @@ public class FileCopierTest extends BaseCamelTest {
      */
     @Test
     public void testCopyFile() throws Exception {
-        logger.info("copyFile");
-        FileCopier.copyFile();
+        logger.info("jmsTest");
+        JmsRouteSample.sampleJmsRoute();
         final String outFileName = "data/outbox/message1.xml";
         File outFile = new File(outFileName);
         assertEquals(true, outFile.exists());
-
     }
-
-
 }

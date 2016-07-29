@@ -32,3 +32,6 @@ out/
 # Maven
 log/
 target/
+
+#MQ
+activemq-data

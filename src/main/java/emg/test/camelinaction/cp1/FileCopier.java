@@ -9,6 +9,10 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
+import static emg.test.camelinaction.constants.RoutesConstants.CAMEL_CONTEXT_SHUTDOWN;
+import static emg.test.camelinaction.constants.RoutesConstants.URI_INBOX_FILE;
+import static emg.test.camelinaction.constants.RoutesConstants.URI_OUTBOX_FILE;
+
 /**
  * @author edison
  */
@@ -18,7 +22,7 @@ public class FileCopier {
         CamelContext context = new DefaultCamelContext();
         context.addRoutes(getRoute());
         context.start();
-        Thread.sleep(5000);
+        Thread.sleep(CAMEL_CONTEXT_SHUTDOWN);
         context.stop();
     }
 
@@ -26,7 +30,7 @@ public class FileCopier {
         RouteBuilder builder = new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("file:data/inbox?noop=true").to("file:data/outbox");
+                from(URI_INBOX_FILE).to(URI_OUTBOX_FILE);
             }
         };
 
