@@ -2,6 +2,10 @@ package emg.test.camelinaction.common;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 import java.io.File;
 
@@ -10,6 +14,24 @@ import java.io.File;
  */
 public abstract class BaseCamelTest {
     private final static Logger logger = LogManager.getLogger(BaseCamelTest.class);
+
+    @BeforeClass
+    public static void setUpClass() {
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
+        cleanOutbox();
+    }
+
+    @After
+    public void tearDown() {
+        cleanOutbox();
+    }
 
     protected void cleanOutbox() {
         logger.info("cleaning outbox");
