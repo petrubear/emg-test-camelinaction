@@ -8,7 +8,7 @@ public class RoutesConstants {
     public final static String URI_OUTBOX_FILE = "file:data/outbox";
     public final static String URI_JMS_INFILE = "jms:queue:incomingFiles";
 
-    public final static String DEFAULT_JMS_CONECTION = "vm://localhost";
+    public final static String DEFAULT_JMS_CONECTION = "vm://localhost?broker.persistent=false";
 
     public final static int CAMEL_CONTEXT_SHUTDOWN = 5000;
 }
