@@ -4,14 +4,6 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- camel xml dsl -->
-    <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
-        <property name="connectionFactory">
-            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-                <property name="brokerURL" value="vm://localhost?broker.persistent=false"/>
-            </bean>
-        </property>
-    </bean>
     <context:component-scan base-package="emg.test.camelinaction.cp2.spring.dynamic"/>
     <camelContext xmlns="http://camel.apache.org/schema/spring" id="camel-cp2">
         <!--<packageScan>-->
