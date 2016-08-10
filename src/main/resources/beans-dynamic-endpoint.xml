@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <import resource="jms-setup.xml"/>
+    <bean class="emg.test.camelinaction.cp2.spring.dynamic.endpoints.DynamicEndPointProcessor"
+          id="dynamicEndPointProcessor"/>
+    <!--<bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">-->
+    <!--<property name="location" value="classpath:rider-test.properties"/>-->
+    <!--</bean>-->
+    <camelContext id="dynamic-endpoint" xmlns="http://camel.apache.org/schema/spring">
+        <propertyPlaceholder id="properties" location="classpath:rider-test.properties"/>
+        <route id="dynamic">
+            <from uri="file:data/inbox?noop=true"/>
+            <log message="trying to start dynamic queue {{queueDest}}"/>
+            <!--<process ref="dynamicEndPointProcessor"/>-->
+            <!--<toD uri="jms:queue:${header.queueDest}+language:xpath:/order/@customer"/>-->
+            <to uri="jms:queue:{{queueDest}}"/>
+        </route>
+        <route id="dynamicBack">
+            <from uri="jms:queue:customerQueue_honda"/>
+            <toD uri="file:data/outbox"/>
+        </route>
+    </camelContext>
+</beans>

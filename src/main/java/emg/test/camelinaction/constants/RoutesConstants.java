@@ -10,5 +10,5 @@ public class RoutesConstants {
 
     public final static String DEFAULT_JMS_CONECTION = "vm://localhost?broker.persistent=false";
 
-    public final static int CAMEL_CONTEXT_SHUTDOWN = 5000;
+    public final static int CAMEL_CONTEXT_SHUTDOWN = 8000;
 }
