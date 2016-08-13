@@ -14,7 +14,7 @@ public class ContentBaseBuilder extends RouteBuilder {
         from(URI_JMS_INFILE)
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml")).to(URI_JMS_XML)
-                .when(header("CamelFileName").endsWith(".csv")).to(URI_JMS_CSV);
+                .when(simple("${header.CamelFileName} ends with '.csv'")).to(URI_JMS_CSV);
         from(URI_JMS_XML).log("receive XML file: ${header.CamelFileName}").to(URI_OUTBOX_FILE);
         from(URI_JMS_CSV).log("receive CSV file: ${header.CamelFileName}").to(URI_OUTBOX_FILE);
     }
