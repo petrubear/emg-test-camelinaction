@@ -10,8 +10,14 @@
         <activemq.version>5.13.4</activemq.version>
         <log4j.version>2.6.2</log4j.version>
         <spring.version>4.2.5.RELEASE</spring.version>
+        <commmonsio.version>2.5</commmonsio.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commmonsio.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springFramework</groupId>
             <artifactId>spring-core</artifactId>
