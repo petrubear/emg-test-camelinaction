@@ -50,5 +50,8 @@ public class ContentBaseBuilderTest extends BaseCamelTest {
         final String outCsv = "data/outbox/message1.csv";
         assertEquals(true, fileExists(outXml));
         assertEquals(true, fileExists(outCsv));
+
+        CamelContext camelContext = (CamelContext) context.getBean("camelContext");
+        camelContext.stop();
     }
 }
