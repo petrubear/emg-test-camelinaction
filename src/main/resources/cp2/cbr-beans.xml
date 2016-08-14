@@ -22,7 +22,7 @@
             <choice>
                 <when id="csvWhen">
                     <simple>
-                        ${header.CamelFileName} ends with '.csv'
+                        ${header.CamelFileName} regex '^.*(csv|csl)$'
                     </simple>
                     <to uri="jms:queue:csvOrders"/>
                 </when>
@@ -32,6 +32,10 @@
                     </simple>
                     <to uri="jms:queue:xmlOrders"/>
                 </when>
+                <otherwise>
+                    <log message="Unrecognized File Type: ${header.CamelFileName}"/>
+                    <to uri="mock:devnull"/>
+                </otherwise>
             </choice>
         </route>
         <route>
