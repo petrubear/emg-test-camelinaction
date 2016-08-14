@@ -10,8 +10,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.*;
 
-import java.io.File;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -48,11 +46,6 @@ public class FileCopierTest extends BaseCamelTest {
     public void testCopyFile() throws Exception {
         logger.info("copyFile");
         FileCopier.copyFile();
-        final String outFileName = "data/outbox/message1.xml";
-        File outFile = new File(outFileName);
-        assertEquals(true, outFile.exists());
-
+        assertEquals(true, fileExists(OUT_FILE_XML));
     }
-
-
 }

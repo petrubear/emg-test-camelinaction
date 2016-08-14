@@ -9,7 +9,7 @@
     <!--<bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">-->
     <!--<property name="location" value="classpath:rider-test.properties"/>-->
     <!--</bean>-->
-    <camelContext id="dynamic-endpoint" xmlns="http://camel.apache.org/schema/spring">
+    <camelContext id="camelContext" xmlns="http://camel.apache.org/schema/spring">
         <propertyPlaceholder id="properties" location="classpath:rider-test.properties"/>
         <route id="dynamic">
             <from uri="file:data/inbox?noop=true"/>

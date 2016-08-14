@@ -1,6 +1,7 @@
 package emg.test.camelinaction.cp2.spring.dynamic;
 
 import emg.test.camelinaction.common.BaseCamelTest;
+import org.apache.camel.CamelContext;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,8 +19,9 @@ public class DynamicRouteBuilderTest extends BaseCamelTest {
     public void dynamicRouteTest() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans-cp2.xml");
         Thread.sleep(CAMEL_CONTEXT_SHUTDOWN);
-        final String outFileName = "data/outbox/message1.xml";
-        File outFile = new File(outFileName);
-        assertEquals(true, outFile.exists());
+        CamelContext camelContext = (CamelContext) context.getBean("camelContext");
+        camelContext.stop();
+
+        assertEquals(true, fileExists(OUT_FILE_XML));
     }
 }

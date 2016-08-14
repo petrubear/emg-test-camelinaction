@@ -1,6 +1,7 @@
 package emg.test.camelinaction.cp2.spring;
 
 import emg.test.camelinaction.common.BaseCamelTest;
+import org.apache.camel.CamelContext;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,8 +22,10 @@ public class SimpleXmlRouteTest extends BaseCamelTest {
 //        SimpleXmlRoute route = new SimpleXmlRoute();
 //        route.startSimpleRoute();
         Thread.sleep(CAMEL_CONTEXT_SHUTDOWN);
-        final String outFileName = "data/outbox/message1.xml";
-        File outFile = new File(outFileName);
-        assertEquals(true, outFile.exists());
+
+        CamelContext camelContext = (CamelContext) context.getBean("camelContext");
+        camelContext.stop();
+
+        assertEquals(true, fileExists(OUT_FILE_XML));
     }
 }

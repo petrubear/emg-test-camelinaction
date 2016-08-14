@@ -48,8 +48,6 @@ public class JmsRouteSampleTest extends BaseCamelTest {
     public void testCopyFile() throws Exception {
         logger.info("jmsTest");
         JmsRouteSample.sampleJmsRoute();
-        final String outFileName = "data/outbox/message1.xml";
-        File outFile = new File(outFileName);
-        assertEquals(true, outFile.exists());
+        assertEquals(true, fileExists(OUT_FILE_XML));
     }
 }

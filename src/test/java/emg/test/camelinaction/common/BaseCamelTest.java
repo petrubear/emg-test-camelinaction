@@ -15,6 +15,10 @@ import java.io.File;
  */
 public abstract class BaseCamelTest {
     private final static Logger logger = LogManager.getLogger(BaseCamelTest.class);
+    protected final static String OUT_FILE_XML = "data/outbox/message1.xml";
+    protected final static String OUT_FILE_CSV = "data/outbox/message1.csv";
+    protected final static String OUT_FILE_CSL = "data/outbox/message1.csl";
+    protected final static String OUT_FILE_XSL = "data/outbox/message1.xls";
 
     @BeforeClass
     public static void setUpClass() {

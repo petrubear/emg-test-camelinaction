@@ -11,7 +11,7 @@
         <property name="greeter" ref="myGreeter"/>
     </bean>
 
-    <camelContext xmlns="http://camel.apache.org/schema/spring" id="camel">
+    <camelContext xmlns="http://camel.apache.org/schema/spring" id="camelContext">
         <!--<routeBuilder ref="ClaseRouteBuilder"/>-->
         <!--
         <route id="file2queue">

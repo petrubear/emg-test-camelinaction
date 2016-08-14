@@ -35,23 +35,18 @@ public class ContentBaseBuilderTest extends BaseCamelTest {
         Thread.sleep(CAMEL_CONTEXT_SHUTDOWN);
         camelContext.stop();
 
-        final String outXml = "data/outbox/message1.xml";
-        final String outCsv = "data/outbox/message1.csv";
-        assertEquals(true, fileExists(outXml));
-        assertEquals(true, fileExists(outCsv));
+        assertEquals(true, fileExists(OUT_FILE_XML));
+        assertEquals(true, fileExists(OUT_FILE_CSV));
     }
 
     @Test
     public void testCbrXml() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("./cp2/cbr-beans.xml");
         Thread.sleep(CAMEL_CONTEXT_SHUTDOWN);
-
-        final String outXml = "data/outbox/message1.xml";
-        final String outCsv = "data/outbox/message1.csv";
-        assertEquals(true, fileExists(outXml));
-        assertEquals(true, fileExists(outCsv));
-
         CamelContext camelContext = (CamelContext) context.getBean("camelContext");
         camelContext.stop();
+
+        assertEquals(true, fileExists(OUT_FILE_XML));
+        assertEquals(true, fileExists(OUT_FILE_CSV));
     }
 }
