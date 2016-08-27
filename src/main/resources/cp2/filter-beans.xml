@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="vm://localhost?broker.persistent=false"/>
+            </bean>
+        </property>
+    </bean>
+    <camelContext xmlns="http://camel.apache.org/schema/spring" id="camelContext">
+        <route id="filterXmlRoute">
+            <from uri="file:data/inbox?noop=true"/>
+            <choice>
+                <when id="xmlWhen">
+                    <simple>${header.CamelFileName} ends with '.xml'</simple>
+                    <filter>
+                        <xpath>/order[not(@test)]</xpath>
+                        <log message=">>> Processing test file ${header.CamelFileName} "/>
+                        <to uri="jms:queue:xmlOrders"/>
+                    </filter>
+                </when>
+            </choice>
+        </route>
+        <route id="multicastXML">
+            <from uri="jms:queue:xmlOrders"/>
+            <multicast>
+                <to uri="file:data/outbox"/>
+                <to uri="direct:xmlOrders"/>
+            </multicast>
+        </route>
+        <route id="directXML">
+            <from uri="direct:xmlOrders"/>
+            <log message=">>> Got into directXML ${header.CamelFileName}"/>
+            <to uri="mock:devnull"/>
+        </route>
+    </camelContext>
+</beans>

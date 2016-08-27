@@ -10,6 +10,7 @@ public class RoutesConstants {
     public final static String URI_JMS_XML = "jms:queue:xmlOrders";
     public final static String URI_JMS_CSV = "jms:queue:csvOrders";
     public final static String URI_JMS_CONTINUE = "jms:queue:continueProcessing";
+    public final static String URI_DIRECT_XML = "direct:xmlOrders";
     public final static String URI_DEV_NULL = "mock:devnull";
 
     public final static String DEFAULT_JMS_CONECTION = "vm://localhost?broker.persistent=false";
