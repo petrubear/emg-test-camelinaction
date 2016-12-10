@@ -3,10 +3,10 @@ package emg.test.camelinaction.common;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;
 
@@ -20,20 +20,20 @@ public abstract class BaseCamelTest {
     protected final static String OUT_FILE_CSL = "data/outbox/message1.csl";
     protected final static String OUT_FILE_XSL = "data/outbox/message1.xls";
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         cleanOutbox();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         cleanOutbox();
     }

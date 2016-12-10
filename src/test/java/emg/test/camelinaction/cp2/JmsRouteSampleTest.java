@@ -8,11 +8,9 @@ package emg.test.camelinaction.cp2;
 import emg.test.camelinaction.common.BaseCamelTest;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
-import java.io.File;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author edison
@@ -23,20 +21,20 @@ public class JmsRouteSampleTest extends BaseCamelTest {
     public JmsRouteSampleTest() {
     }
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         cleanOutbox();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         cleanOutbox();
     }
